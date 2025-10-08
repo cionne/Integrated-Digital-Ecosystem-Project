@@ -194,8 +194,8 @@
         }
 
         .bird svg {
-            width: 30px;
-            height: 20px;
+            width: 50px;
+            height: 30px;
         }
 
         .bird1 {
@@ -225,20 +225,26 @@
         @keyframes birdFly {
             0% {
                 left: -50px;
-                transform: translateY(0);
+                transform: translateY(0) rotate(0deg);
+            }
+            10% {
+                transform: translateY(-20px) rotate(2deg);
             }
             25% {
-                transform: translateY(-20px);
+                transform: translateY(-15px) rotate(-1deg);
             }
             50% {
-                transform: translateY(10px);
+                transform: translateY(10px) rotate(1deg);
             }
             75% {
-                transform: translateY(-15px);
+                transform: translateY(-15px) rotate(-2deg);
+            }
+            90% {
+                transform: translateY(-5px) rotate(1deg);
             }
             100% {
                 left: calc(100% + 50px);
-                transform: translateY(0);
+                transform: translateY(0) rotate(0deg);
             }
         }
 
@@ -927,65 +933,158 @@
 
         .butterfly {
             position: absolute;
-            width: 30px;
-            height: 20px;
-            animation: butterflyFly 15s infinite ease-in-out;
+            width: 40px;
+            height: 30px;
+            animation: butterflyFly 18s infinite ease-in-out;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+            z-index: 10;
         }
 
         .butterfly1 {
-            top: 30%;
-            left: 20%;
+            top: 20%;
+            left: 10%;
             animation-delay: 0s;
         }
 
         .butterfly2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: -6s;
+        }
+        
+        .butterfly3 {
             top: 40%;
-            right: 25%;
-            animation-delay: -5s;
+            left: 5%;
+            animation-delay: -12s;
+        }
+
+        .butterfly-body {
+            position: absolute;
+            width: 6px;
+            height: 24px;
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            border-radius: 3px;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .butterfly-head {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #2c3e50;
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .butterfly-antenna {
+            position: absolute;
+            width: 1px;
+            height: 10px;
+            background: #2c3e50;
+            top: -5px;
+        }
+
+        .antenna-left {
+            left: 45%;
+            transform: rotate(-15deg);
+        }
+
+        .antenna-right {
+            right: 45%;
+            transform: rotate(15deg);
         }
 
         .wing {
             position: absolute;
-            width: 15px;
-            height: 20px;
-            background: radial-gradient(ellipse, #ffeb3b 0%, #fdd835 40%, #f9a825 100%);
-            border-radius: 50% 0 50% 0;
-            animation: wingFlap 0.3s infinite ease-in-out;
+            width: 18px;
+            height: 24px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: wingFlap 0.4s infinite ease-in-out;
+            z-index: 1;
         }
 
         .wing-left {
             left: 0;
             transform-origin: right center;
+            background: radial-gradient(ellipse at center, #ff9800 0%, #e65100 60%, #bf360c 100%);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .wing-right {
             right: 0;
-            transform: scaleX(-1);
             transform-origin: left center;
-            animation-direction: reverse;
+            background: radial-gradient(ellipse at center, #ff9800 0%, #e65100 60%, #bf360c 100%);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+            animation-direction: alternate;
+        }
+
+        .wing-pattern {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .wing-pattern::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            top: 60%;
+            left: 30%;
         }
 
         @keyframes wingFlap {
             0%, 100% {
-                transform: scaleX(1) rotateY(0deg);
+                transform: rotateY(0deg) scale(1);
+            }
+            25% {
+                transform: rotateY(-25deg) scale(1.05);
             }
             50% {
-                transform: scaleX(1) rotateY(-20deg);
+                transform: rotateY(0deg) scale(1);
+            }
+            75% {
+                transform: rotateY(25deg) scale(1.05);
             }
         }
 
         @keyframes butterflyFly {
             0%, 100% {
-                transform: translate(0, 0);
+            transform: translate(0, 0);
+            }
+            12% {
+            transform: translate(120px, -60px);
             }
             25% {
-                transform: translate(100px, -50px);
+            transform: translate(220px, -100px);
+            }
+            37% {
+            transform: translate(270px, -40px);
             }
             50% {
-                transform: translate(150px, 20px);
+            transform: translate(320px, 40px);
+            }
+            62% {
+            transform: translate(250px, 120px); /* Move further south */
             }
             75% {
-                transform: translate(50px, -30px);
+            transform: translate(120px, 180px); /* Move even further south */
+            }
+            87% {
+            transform: translate(40px, 100px); /* Still south, but returning */
             }
         }
 
@@ -1151,45 +1250,117 @@
         </div>
         
         <div class="bird bird1">
-            <svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5,10 Q15,5 25,10" stroke="#424242" stroke-width="2" fill="none" stroke-linecap="round">
-                    <animate attributeName="d" 
-                             values="M5,10 Q15,5 25,10;M5,10 Q15,2 25,10;M5,10 Q15,5 25,10" 
-                             dur="0.4s" 
-                             repeatCount="indefinite"/>
-                </path>
-            </svg>
-        </div>
-        <div class="bird bird2">
-            <svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5,10 Q15,5 25,10" stroke="#424242" stroke-width="2" fill="none" stroke-linecap="round">
-                    <animate attributeName="d" 
-                             values="M5,10 Q15,5 25,10;M5,10 Q15,2 25,10;M5,10 Q15,5 25,10" 
-                             dur="0.4s" 
-                             repeatCount="indefinite"/>
-                </path>
-            </svg>
-        </div>
-        <div class="bird bird3">
-            <svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5,10 Q15,5 25,10" stroke="#424242" stroke-width="2" fill="none" stroke-linecap="round">
-                    <animate attributeName="d" 
-                             values="M5,10 Q15,5 25,10;M5,10 Q15,2 25,10;M5,10 Q15,5 25,10" 
-                             dur="0.4s" 
-                             repeatCount="indefinite"/>
-                </path>
-            </svg>
-        </div>
-        <div class="bird bird4">
-            <svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5,10 Q15,5 25,10" stroke="#424242" stroke-width="2" fill="none" stroke-linecap="round">
-                    <animate attributeName="d" 
-                             values="M5,10 Q15,5 25,10;M5,10 Q15,2 25,10;M5,10 Q15,5 25,10" 
-                             dur="0.4s" 
-                             repeatCount="indefinite"/>
-                </path>
-            </svg>
-        </div>
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <!-- Bird body -->
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            
+            <!-- Bird head -->
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            
+            <!-- Beak -->
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            
+            <!-- Eye -->
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            
+            <!-- Wings -->
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Tail -->
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
+    <div class="bird bird2">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <!-- Bird body -->
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            
+            <!-- Bird head -->
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            
+            <!-- Beak -->
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            
+            <!-- Eye -->
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            
+            <!-- Wings -->
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Tail -->
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
+    <div class="bird bird3">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <!-- Bird body -->
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            
+            <!-- Bird head -->
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            
+            <!-- Beak -->
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            
+            <!-- Eye -->
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            
+            <!-- Wings -->
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Tail -->
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
+    <div class="bird bird4">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <!-- Bird body -->
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            
+            <!-- Bird head -->
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            
+            <!-- Beak -->
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            
+            <!-- Eye -->
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            
+            <!-- Wings -->
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Tail -->
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
     </div>
 
     <div class="container">
@@ -1215,13 +1386,33 @@
         </div>
 
         <div class="ecosystem">
+            <!-- Butterflies -->
             <div class="butterfly butterfly1">
-                <div class="wing wing-left"></div>
-                <div class="wing wing-right"></div>
+                <div class="butterfly-head">
+                    <div class="butterfly-antenna antenna-left"></div>
+                    <div class="butterfly-antenna antenna-right"></div>
+                </div>
+                <div class="butterfly-body"></div>
+                <div class="wing wing-left">
+                    <div class="wing-pattern"></div>
+                </div>
+                <div class="wing wing-right">
+                    <div class="wing-pattern"></div>
+                </div>
             </div>
+            
             <div class="butterfly butterfly2">
-                <div class="wing wing-left"></div>
-                <div class="wing wing-right"></div>
+                <div class="butterfly-head">
+                    <div class="butterfly-antenna antenna-left"></div>
+                    <div class="butterfly-antenna antenna-right"></div>
+                </div>
+                <div class="butterfly-body"></div>
+                <div class="wing wing-left" style="background: radial-gradient(ellipse at center, #9C27B0 0%, #7B1FA2 60%, #4A148C 100%);">
+                    <div class="wing-pattern"></div>
+                </div>
+                <div class="wing wing-right" style="background: radial-gradient(ellipse at center, #9C27B0 0%, #7B1FA2 60%, #4A148C 100%);">
+                    <div class="wing-pattern"></div>
+                </div>
             </div>
 
             <div class="tree-container">
@@ -1256,47 +1447,47 @@
 
             <!-- SPT1 Bubbles -->
             <a href="https://cionne.github.io/My_Portfolio/" target="_blank" rel="noopener noreferrer" class="bubble spt1-1" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
-                <div class="bubble-icon">📘</div>
+                <div class="bubble-icon">💼</div>
                 <div class="bubble-text">My Portfolio</div>
             </a>
             <a href="https://cionne.github.io/Educational-Website/" target="_blank" rel="noopener noreferrer" class="bubble spt1-2" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
-                <div class="bubble-icon">📝</div>
+                <div class="bubble-icon">📚</div>
                 <div class="bubble-text">Educational Website</div>
             </a>
             <a href="https://swimresort.page.gd/" target="_blank" rel="noopener noreferrer" class="bubble spt1-3" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
-                <div class="bubble-icon">📊</div>
+                <div class="bubble-icon">📢</div>
                 <div class="bubble-text">Mini Web App</div>
             </a>
             <a href="https://cionne.github.io/SPT1_PETA_LR/" target="_blank" rel="noopener noreferrer" class="bubble spt1-4" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
-                <div class="bubble-icon">🎯</div>
+                <div class="bubble-icon">🛍️</div>
                 <div class="bubble-text">Online Shop</div>
             </a> 
 
             <!-- WS101 Bubbles -->
-            <a href="#" target="_blank" rel="noopener noreferrer" class="bubble ws101-1" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
-                <div class="bubble-icon">💻</div>
-                <div class="bubble-text">WS101 Link 1</div>
+            <a href="https://cionne.github.io/martin_jr_pt04-01_interactive-quiz-tool/" target="_blank" rel="noopener noreferrer" class="bubble ws101-1" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
+                <div class="bubble-icon">🧠</div>
+                <div class="bubble-text">Interactive Quiz</div>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="bubble ws101-2" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
-                <div class="bubble-icon">🌐</div>
-                <div class="bubble-text">WS101 Link 2</div>
+            <a href="https://cionne.github.io/Educational-Webpage-W-SDG/" target="_blank" rel="noopener noreferrer" class="bubble ws101-2" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
+                <div class="bubble-icon">♻️</div>
+                <div class="bubble-text">Webpage with SDG</div>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="bubble ws101-3" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
-                <div class="bubble-icon">⚙️</div>
-                <div class="bubble-text">WS101 Link 3</div>
+            <a href="https://cionne.github.io/Educational-Assistance-Tool/" target="_blank" rel="noopener noreferrer" class="bubble ws101-3" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
+                <div class="bubble-icon">🎯</div>
+                <div class="bubble-text">Educational Quiz</div>
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer" class="bubble ws101-4" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
-                <div class="bubble-icon">🔧</div>
-                <div class="bubble-text">WS101 Link 4</div>
+                <div class="bubble-icon">🛡️</div>
+                <div class="bubble-text">Secured Quiz(Coming Soon)</div>
             </a>
 
             <!-- SPT2 Bubbles -->
             <a href="https://x.thunkable.com/copy/218831d4a7ae81956f048f23ece0e205" target="_blank" rel="noopener noreferrer" class="bubble spt2-1" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
-                <div class="bubble-icon">🎓</div>
+                <div class="bubble-icon">📱</div>
                 <div class="bubble-text">Multi-Media App</div>
             </a>
             <a href="https://x.thunkable.com/copy/8260b664d661fc5e625542b8cca3deb6" target="_blank" rel="noopener noreferrer" class="bubble spt2-2" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
-                <div class="bubble-icon">📚</div>
+                <div class="bubble-icon">🧮</div>
                 <div class="bubble-text">Calculator App</div>
             </a>
 
@@ -1432,5 +1623,4 @@
         });
     </script>
 </body>
-
 </html>
