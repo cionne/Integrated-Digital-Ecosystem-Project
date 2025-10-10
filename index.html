@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Ecosystem</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <span id="toggleIcon">🌙</span>
+    </div>
+
+    <!-- Stars (for dark mode) -->
+    <div class="stars" id="stars"></div>
+
+    <div class="sun"></div>
+    
+    <div class="sky">
+        <div class="cloud cloud1">
+            <div class="cloud-main"></div>
+            <div class="cloud-puff puff1"></div>
+            <div class="cloud-puff puff2"></div>
+            <div class="cloud-puff puff3"></div>
+        </div>
+        <div class="cloud cloud2">
+            <div class="cloud-main"></div>
+            <div class="cloud-puff puff1"></div>
+            <div class="cloud-puff puff2"></div>
+            <div class="cloud-puff puff3"></div>
+        </div>
+        <div class="cloud cloud3">
+            <div class="cloud-main"></div>
+            <div class="cloud-puff puff1"></div>
+            <div class="cloud-puff puff2"></div>
+        </div>
+        
+        <div class="bird bird1">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
+    <div class="bird bird2">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
+    <div class="bird bird3">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
+    <div class="bird bird4">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="30" rx="15" ry="10" fill="#5D4037" />
+            <circle cx="55" cy="25" r="8" fill="#5D4037" />
+            <polygon points="63,25 70,25 63,30" fill="#FF9800" />
+            <circle cx="57" cy="23" r="1.5" fill="#FFFFFF" />
+            <path id="wing1" d="M30,30 Q20,15 25,10 Q35,20 30,30" fill="#4E342E">
+                <animate attributeName="d" 
+                         values="M30,30 Q20,15 25,10 Q35,20 30,30;
+                                 M30,30 Q10,5 15,0 Q35,15 30,30;
+                                 M30,30 Q20,15 25,10 Q35,20 30,30" 
+                         dur="0.5s" 
+                         repeatCount="indefinite"/>
+            </path>
+            <path d="M25,30 Q15,25 10,35 Q20,35 25,30" fill="#4E342E" />
+        </svg>
+    </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🌿 My Digital Ecosystem 🌿</h1>
+            <p>Explore the branches of knowledge</p>
+        </div>
+
+        <div class="legend">
+            <div class="legend-title">📚 Course Links</div>
+            <div class="legend-item">
+                <div class="legend-color spt1-color"></div>
+                <span>SPT1 (4)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color ws101-color"></div>
+                <span>WS101 (4)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color spt2-color"></div>
+                <span>SPT2 (2)</span>
+            </div>
+        </div>
+
+        <div class="ecosystem">
+            <!-- Butterflies -->
+            <div class="butterfly butterfly1">
+                <div class="butterfly-head">
+                    <div class="butterfly-antenna antenna-left"></div>
+                    <div class="butterfly-antenna antenna-right"></div>
+                </div>
+                <div class="butterfly-body"></div>
+                <div class="wing wing-left">
+                    <div class="wing-pattern"></div>
+                </div>
+                <div class="wing wing-right">
+                    <div class="wing-pattern"></div>
+                </div>
+            </div>
+            
+            <div class="butterfly butterfly2">
+                <div class="butterfly-head">
+                    <div class="butterfly-antenna antenna-left"></div>
+                    <div class="butterfly-antenna antenna-right"></div>
+                </div>
+                <div class="butterfly-body"></div>
+                <div class="wing wing-left" style="background: radial-gradient(ellipse at center, #9C27B0 0%, #7B1FA2 60%, #4A148C 100%);">
+                    <div class="wing-pattern"></div>
+                </div>
+                <div class="wing wing-right" style="background: radial-gradient(ellipse at center, #9C27B0 0%, #7B1FA2 60%, #4A148C 100%);">
+                    <div class="wing-pattern"></div>
+                </div>
+            </div>
+
+            <div class="tree-container">
+                <div class="canopy">
+                    <div class="leaves">
+                        <div class="leaf-cluster leaf-cluster1"></div>
+                        <div class="leaf-cluster leaf-cluster2"></div>
+                        <div class="leaf-cluster leaf-cluster3"></div>
+                        <div class="leaf-cluster leaf-cluster4"></div>
+                        <div class="leaf-cluster leaf-cluster5"></div>
+                        <div class="individual-leaf leaf2" style="--rotate: 30deg"></div>
+                        <div class="individual-leaf leaf3" style="--rotate: -45deg"></div>
+                    </div>
+                </div>
+                <div class="trunk">
+                    <div class="bark-line bark1"></div>
+                    <div class="bark-line bark2"></div>
+                    <div class="bark-line bark3"></div>
+                    <div class="knot"></div>
+                    <div class="branch branch-left"></div>
+                    <div class="branch branch-left-2"></div>
+                    <div class="branch branch-right"></div>
+                    <div class="branch branch-right-2"></div>
+                </div>
+                <div class="roots">
+                    <div class="root root1"></div>
+                    <div class="root root2"></div>
+                    <div class="root root3"></div>
+                    <div class="root root4"></div>
+                </div>
+            </div>
+
+            <!-- SPT1 Bubbles -->
+            <a href="https://cionne.github.io/My_Portfolio/" target="_blank" rel="noopener noreferrer" class="bubble spt1-1" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
+                <div class="bubble-icon">💼</div>
+                <div class="bubble-text">My Portfolio</div>
+            </a>
+            <a href="https://cionne.github.io/Educational-Website/" target="_blank" rel="noopener noreferrer" class="bubble spt1-2" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
+                <div class="bubble-icon">📚</div>
+                <div class="bubble-text">Educational Website</div>
+            </a>
+            <a href="https://swimresort.page.gd/" target="_blank" rel="noopener noreferrer" class="bubble spt1-3" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
+                <div class="bubble-icon">📢</div>
+                <div class="bubble-text">Mini Web App</div>
+            </a>
+            <a href="https://cionne.github.io/SPT1_PETA_LR/" target="_blank" rel="noopener noreferrer" class="bubble spt1-4" style="background: linear-gradient(135deg, rgba(100, 181, 246, 0.9), rgba(66, 165, 245, 0.85));">
+                <div class="bubble-icon">🛒</div>
+                <div class="bubble-text">Online Shop</div>
+            </a> 
+
+            <!-- WS101 Bubbles -->
+            <a href="https://cionne.github.io/martin_jr_pt04-01_interactive-quiz-tool/" target="_blank" rel="noopener noreferrer" class="bubble ws101-1" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
+                <div class="bubble-icon">🧠</div>
+                <div class="bubble-text">Interactive Quiz</div>
+            </a>
+            <a href="https://cionne.github.io/Educational-Webpage-W-SDG/" target="_blank" rel="noopener noreferrer" class="bubble ws101-2" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
+                <div class="bubble-icon">♻️</div>
+                <div class="bubble-text">Webpage with SDG</div>
+            </a>
+            <a href="https://cionne.github.io/Educational-Assistance-Tool/" target="_blank" rel="noopener noreferrer" class="bubble ws101-3" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
+                <div class="bubble-icon">🎯</div>
+                <div class="bubble-text">Educational Quiz</div>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="bubble ws101-4" style="background: linear-gradient(135deg, rgba(255, 183, 77, 0.9), rgba(255, 167, 38, 0.85));">
+                <div class="bubble-icon">🛡️</div>
+                <div class="bubble-text">Secured Quiz(Coming Soon)</div>
+            </a>
+
+            <!-- SPT2 Bubbles -->
+            <a href="https://x.thunkable.com/copy/218831d4a7ae81956f048f23ece0e205" target="_blank" rel="noopener noreferrer" class="bubble spt2-1" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
+                <div class="bubble-icon">📱</div>
+                <div class="bubble-text">Multi-Media App</div>
+            </a>
+            <a href="https://x.thunkable.com/copy/8260b664d661fc5e625542b8cca3deb6" target="_blank" rel="noopener noreferrer" class="bubble spt2-2" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
+                <div class="bubble-icon">🧮</div>
+                <div class="bubble-text">Calculator App</div>
+            </a>
+
+            <div class="ground">
+                <div class="grass" id="grass"></div>
+                <div class="rock rock1"></div>
+                <div class="rock rock2"></div>
+                <div class="rock rock3"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
