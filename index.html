@@ -226,14 +226,82 @@
             </a>
 
             <!-- SPT2 Bubbles -->
-            <a href="https://x.thunkable.com/copy/218831d4a7ae81956f048f23ece0e205" target="_blank" rel="noopener noreferrer" class="bubble spt2-1" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
-                <div class="bubble-icon">📱</div>
-                <div class="bubble-text">Multi-Media App</div>
-            </a>
-            <a href="https://x.thunkable.com/copy/8260b664d661fc5e625542b8cca3deb6" target="_blank" rel="noopener noreferrer" class="bubble spt2-2" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
-                <div class="bubble-icon">🧮</div>
-                <div class="bubble-text">Calculator App</div>
-            </a>
+<a href="#" class="bubble spt2-1" data-modal="multimedia" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
+    <div class="bubble-icon">📱</div>
+    <div class="bubble-text">Multi-Media App</div>
+</a>
+<a href="#" class="bubble spt2-2" data-modal="calculator" style="background: linear-gradient(135deg, rgba(129, 199, 132, 0.9), rgba(102, 187, 106, 0.85));">
+    <div class="bubble-icon">🧮</div>
+    <div class="bubble-text">Calculator App</div>
+</a>
+
+<!-- Modals -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-container">
+        <button class="modal-close" id="modalClose">&times;</button>
+        
+        <!-- Multi-Media App Modal -->
+        <div class="modal-content" id="multimedia-modal">
+            <div class="modal-video">
+                <div class="video-placeholder">
+<video width="500" height="560" controls>
+            <source src="Thunkable - Multi Media App.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+                </div>
+            </div>
+            <div class="modal-info">
+                <h2>📱 Multi-Media App</h2>
+                <p class="modal-description">
+                    Explore our comprehensive multimedia application built with Thunkable. This app features photo capturing, video recording, audio playback, and gallery management. Perfect for creating and managing your media content on the go.
+                </p>
+                <div class="modal-features">
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>📸 Photo & Video Capture</li>
+                        <li>🎵 Audio Recording & Playback</li>
+                        <li>🖼️ Media Gallery Management</li>
+                        <li>🎨 User-Friendly Interface</li>
+                    </ul>
+                </div>
+                <a href="https://x.thunkable.com/copy/218831d4a7ae81956f048f23ece0e205" target="_blank" rel="noopener noreferrer" class="modal-button">
+                    Visit At Thunkable
+                </a>
+            </div>
+        </div>
+        
+        <!-- Calculator App Modal -->
+        <div class="modal-content" id="calculator-modal">
+            <div class="modal-video">
+                <div class="video-placeholder">
+<video width="500" height="560" controls>
+            <source src="Thunkable - Calculator.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+                </div>
+            </div>
+            <div class="modal-info">
+                <h2>🧮 Calculator App</h2>
+                <p class="modal-description">
+                    A fully functional calculator application designed with a clean and intuitive interface. Supports basic arithmetic operations, advanced calculations, and maintains a calculation history for easy reference.
+                </p>
+                <div class="modal-features">
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>➕ Basic Arithmetic Operations</li>
+                        <li>🔢 Advanced Mathematical Functions</li>
+                        <li>📊 Calculation History</li>
+                        <li>🎯 Precision & Accuracy</li>
+                    </ul>
+                </div>
+                <a href="https://x.thunkable.com/copy/8260b664d661fc5e625542b8cca3deb6" target="_blank" rel="noopener noreferrer" class="modal-button">
+                    Visit At Thunkable
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
             <div class="ground">
                 <div class="grass" id="grass"></div>
@@ -244,6 +312,4 @@
         </div>
     </div>
 </body>
-
 </html>
-
