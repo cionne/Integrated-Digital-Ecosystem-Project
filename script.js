@@ -151,7 +151,7 @@
                     
                     setTimeout(() => ripple.remove(), 600);
                     
-                    alert('Please update this link with your actual URL!');
+                    
                 }
             });
             
@@ -198,3 +198,142 @@ function generateFireflies() {
 }
 
 generateFireflies();
+
+// Modal functionality with video auto-play
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const spt2Bubbles = document.querySelectorAll('.bubble[data-modal]');
+
+// Video elements
+const multimediaVideo = document.getElementById('multimediaVideo');
+const calculatorVideo = document.getElementById('calculatorVideo');
+const multimediaPlayBtn = document.getElementById('multimediaPlay');
+const calculatorPlayBtn = document.getElementById('calculatorPlay');
+
+let currentVideo = null;
+let currentPlayBtn = null;
+
+spt2Bubbles.forEach(bubble => {
+    bubble.addEventListener('click', (e) => {
+        e.preventDefault();
+        const modalId = bubble.getAttribute('data-modal');
+        openModal(modalId);
+    });
+});
+
+function openModal(modalId) {
+    // Hide all modal contents
+    document.querySelectorAll('.modal-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Show selected modal content
+    const selectedModal = document.getElementById(`${modalId}-modal`);
+    if (selectedModal) {
+        selectedModal.classList.add('active');
+    }
+    
+    // Set current video based on modal
+    if (modalId === 'multimedia') {
+        currentVideo = multimediaVideo;
+        currentPlayBtn = multimediaPlayBtn;
+    } else if (modalId === 'calculator') {
+        currentVideo = calculatorVideo;
+        currentPlayBtn = calculatorPlayBtn;
+    }
+    
+    // Show overlay
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Auto-play video after modal animation
+    setTimeout(() => {
+        if (currentVideo) {
+            currentVideo.play().catch(err => {
+                console.log('Auto-play prevented:', err);
+                currentPlayBtn.classList.add('paused');
+            });
+        }
+    }, 300);
+}
+
+function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Stop and reset all videos
+    if (currentVideo) {
+        currentVideo.pause();
+        currentVideo.currentTime = 0;
+        currentPlayBtn.classList.remove('paused');
+    }
+    
+    // Stop all videos
+    document.querySelectorAll('.modal-video-player').forEach(video => {
+        video.pause();
+        video.currentTime = 0;
+    });
+    
+    currentVideo = null;
+    currentPlayBtn = null;
+}
+
+modalClose.addEventListener('click', closeModal);
+
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Play button click handlers
+multimediaPlayBtn.addEventListener('click', () => {
+    multimediaVideo.play();
+    multimediaPlayBtn.classList.remove('paused');
+});
+
+calculatorPlayBtn.addEventListener('click', () => {
+    calculatorVideo.play();
+    calculatorPlayBtn.classList.remove('paused');
+});
+
+// Show play button when video is paused
+multimediaVideo.addEventListener('pause', () => {
+    multimediaPlayBtn.classList.add('paused');
+});
+
+multimediaVideo.addEventListener('play', () => {
+    multimediaPlayBtn.classList.remove('paused');
+});
+
+calculatorVideo.addEventListener('pause', () => {
+    calculatorPlayBtn.classList.add('paused');
+});
+
+calculatorVideo.addEventListener('play', () => {
+    calculatorPlayBtn.classList.remove('paused');
+});
+
+// Click on video to pause/play
+multimediaVideo.addEventListener('click', () => {
+    if (multimediaVideo.paused) {
+        multimediaVideo.play();
+    } else {
+        multimediaVideo.pause();
+    }
+});
+
+calculatorVideo.addEventListener('click', () => {
+    if (calculatorVideo.paused) {
+        calculatorVideo.play();
+    } else {
+        calculatorVideo.pause();
+    }
+});
