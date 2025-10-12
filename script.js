@@ -199,48 +199,85 @@ function generateFireflies() {
 
 generateFireflies();
 
-// Get modal elements
+// Modal functionality with iframe auto-play
 const modalOverlay = document.getElementById('modalOverlay');
 const modalClose = document.getElementById('modalClose');
+const spt2Bubbles = document.querySelectorAll('.bubble[data-modal]');
 
-// Select all modal contents
-const modals = document.querySelectorAll('.modal-content');
+// Video URLs (YouTube embed or other video hosting)
+const videoUrls = {
+    multimedia: 'https://www.youtube.com/shorts/XBXSzJkcDXg', // e.g., https://www.youtube.com/embed/VIDEO_ID?autoplay=1&loop=1&mute=1
+    calculator: 'YOUR_CALCULATOR_VIDEO_EMBED_URL'
+};
 
-// Function to open a specific modal by ID
+let currentIframe = null;
+
+spt2Bubbles.forEach(bubble => {
+    bubble.addEventListener('click', (e) => {
+        e.preventDefault();
+        const modalId = bubble.getAttribute('data-modal');
+        openModal(modalId);
+    });
+});
+
 function openModal(modalId) {
-  // Hide all modals first
-  modals.forEach(m => m.style.display = 'none');
-
-  // Show overlay and the target modal
-  modalOverlay.style.display = 'flex';
-  const targetModal = document.getElementById(modalId);
-  targetModal.style.display = 'flex';
-
-  // Play and loop the video automatically
-  const video = targetModal.querySelector('video');
-  if (video) {
-    video.loop = true;       // enable looping
-    video.currentTime = 0;   // start from beginning
-    video.play();            // autoplay
-  }
-}
-
-// Function to close modal and stop videos
-function closeModal() {
-  modalOverlay.style.display = 'none';
-  modals.forEach(m => {
-    const video = m.querySelector('video');
-    if (video) {
-      video.pause();
-      video.currentTime = 0; // reset video position
+    // Hide all modal contents
+    document.querySelectorAll('.modal-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Show selected modal content
+    const selectedModal = document.getElementById(`${modalId}-modal`);
+    if (selectedModal) {
+        selectedModal.classList.add('active');
     }
-  });
+    
+    // Set current iframe and load video
+    if (modalId === 'multimedia') {
+        currentIframe = document.getElementById('multimediaVideo');
+    } else if (modalId === 'calculator') {
+        currentIframe = document.getElementById('calculatorVideo');
+    }
+    
+    // Load video URL
+    if (currentIframe && videoUrls[modalId]) {
+        currentIframe.src = videoUrls[modalId];
+    }
+    
+    // Show overlay
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
-// Close modal when clicking the close button
+function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Stop video by removing src
+    if (currentIframe) {
+        currentIframe.src = '';
+    }
+    
+    // Stop all iframes
+    document.querySelectorAll('.modal-video-player').forEach(iframe => {
+        iframe.src = '';
+    });
+    
+    currentIframe = null;
+}
+
 modalClose.addEventListener('click', closeModal);
 
-// Close modal when clicking outside content
-window.addEventListener('click', (e) => {
-  if (e.target === modalOverlay) closeModal();
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        closeModal();
+    }
 });
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        closeModal();
+    }
+});
+
