@@ -199,7 +199,7 @@ function generateFireflies() {
 
 generateFireflies();
 
-// Modal functionality with video auto-play + loop
+// Modal functionality with video auto-play
 const modalOverlay = document.getElementById('modalOverlay');
 const modalClose = document.getElementById('modalClose');
 const spt2Bubbles = document.querySelectorAll('.bubble[data-modal]');
@@ -213,16 +213,26 @@ const calculatorPlayBtn = document.getElementById('calculatorPlay');
 let currentVideo = null;
 let currentPlayBtn = null;
 
-// Event listener for bubbles that open modals
+// Set videos to loop
+multimediaVideo.loop = true;
+calculatorVideo.loop = true;
+
+// Add muted attribute for better autoplay compatibility
+multimediaVideo.muted = true;
+calculatorVideo.muted = true;
+
 spt2Bubbles.forEach(bubble => {
     bubble.addEventListener('click', (e) => {
         e.preventDefault();
         const modalId = bubble.getAttribute('data-modal');
+        console.log('Opening modal:', modalId); // Debug log
         openModal(modalId);
     });
 });
 
 function openModal(modalId) {
+    console.log('openModal called with:', modalId); // Debug log
+    
     // Hide all modal contents
     document.querySelectorAll('.modal-content').forEach(content => {
         content.classList.remove('active');
@@ -230,11 +240,13 @@ function openModal(modalId) {
     
     // Show selected modal content
     const selectedModal = document.getElementById(`${modalId}-modal`);
+    console.log('Selected modal element:', selectedModal); // Debug log
+    
     if (selectedModal) {
         selectedModal.classList.add('active');
     }
     
-    // Determine which video to play
+    // Set current video based on modal
     if (modalId === 'multimedia') {
         currentVideo = multimediaVideo;
         currentPlayBtn = multimediaPlayBtn;
@@ -243,20 +255,27 @@ function openModal(modalId) {
         currentPlayBtn = calculatorPlayBtn;
     }
     
+    console.log('Current video:', currentVideo); // Debug log
+    
     // Show overlay
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Auto-play, loop, and mute video after modal animation
+    // Auto-play video after modal animation
     setTimeout(() => {
         if (currentVideo) {
-            currentVideo.loop = true;       // enable looping
-            currentVideo.muted = true;      // ensure autoplay works in Chrome/Safari
-            currentVideo.currentTime = 0;   // reset to start
-            currentVideo.play().catch(err => {
-                console.log('Auto-play prevented:', err);
-                currentPlayBtn.classList.add('paused');
-            });
+            currentVideo.currentTime = 0; // Reset to beginning
+            const playPromise = currentVideo.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Video autoplay started successfully');
+                    currentPlayBtn.style.display = 'none';
+                }).catch(error => {
+                    console.log('Auto-play prevented:', error);
+                    currentPlayBtn.style.display = 'block';
+                });
+            }
         }
     }, 300);
 }
@@ -269,26 +288,26 @@ function closeModal() {
     if (currentVideo) {
         currentVideo.pause();
         currentVideo.currentTime = 0;
-        currentPlayBtn.classList.remove('paused');
     }
     
-    // Stop and reset all videos (safety)
-    document.querySelectorAll('.modal-video-player').forEach(video => {
-        video.pause();
-        video.currentTime = 0;
-    });
+    // Reset all play buttons
+    if (multimediaPlayBtn) multimediaPlayBtn.style.display = 'block';
+    if (calculatorPlayBtn) calculatorPlayBtn.style.display = 'block';
     
     currentVideo = null;
     currentPlayBtn = null;
 }
 
-// Event listeners for closing modal
+// Event listeners
 modalClose.addEventListener('click', closeModal);
+
 modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) {
         closeModal();
     }
 });
+
+// Close modal with Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
         closeModal();
@@ -297,32 +316,31 @@ document.addEventListener('keydown', (e) => {
 
 // Play button click handlers
 multimediaPlayBtn.addEventListener('click', () => {
-    multimediaVideo.play();
-    multimediaPlayBtn.classList.remove('paused');
+    multimediaVideo.play().then(() => {
+        multimediaPlayBtn.style.display = 'none';
+    });
 });
+
 calculatorPlayBtn.addEventListener('click', () => {
-    calculatorVideo.play();
-    calculatorPlayBtn.classList.remove('paused');
+    calculatorVideo.play().then(() => {
+        calculatorPlayBtn.style.display = 'none';
+    });
 });
 
-// Show play button when video is paused/playing
+// Show play button when video is paused
 multimediaVideo.addEventListener('pause', () => {
-    multimediaPlayBtn.classList.add('paused');
-});
-multimediaVideo.addEventListener('play', () => {
-    multimediaPlayBtn.classList.remove('paused');
-});
-calculatorVideo.addEventListener('pause', () => {
-    calculatorPlayBtn.classList.add('paused');
-});
-calculatorVideo.addEventListener('play', () => {
-    calculatorPlayBtn.classList.remove('paused');
+    multimediaPlayBtn.style.display = 'block';
 });
 
-// Toggle play/pause when clicking the video
-multimediaVideo.addEventListener('click', () => {
-    multimediaVideo.paused ? multimediaVideo.play() : multimediaVideo.pause();
+calculatorVideo.addEventListener('pause', () => {
+    calculatorPlayBtn.style.display = 'block';
 });
-calculatorVideo.addEventListener('click', () => {
-    calculatorVideo.paused ? calculatorVideo.play() : calculatorVideo.pause();
+
+// Hide play button when video plays
+multimediaVideo.addEventListener('play', () => {
+    multimediaPlayBtn.style.display = 'none';
+});
+
+calculatorVideo.addEventListener('play', () => {
+    calculatorPlayBtn.style.display = 'none';
 });
