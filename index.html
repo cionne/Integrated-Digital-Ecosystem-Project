@@ -244,10 +244,11 @@
         <div class="modal-content" id="multimedia-modal">
             <div class="modal-video">
                 <div class="video-placeholder">
-<video width="500" height="560" controls>
-            <source src="assets/Thunkable - Multi Media App.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+                    <video id="multimediaVideo" class="modal-video-player" width="500" height="560" controls muted>
+                        <source src="assets/Thunkable - Multi Media App.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="video-play-btn" id="multimediaPlay">▶</button>
                 </div>
             </div>
             <div class="modal-info">
@@ -274,11 +275,11 @@
         <div class="modal-content" id="calculator-modal">
             <div class="modal-video">
                 <div class="video-placeholder">
-<video class="modal-video-player" width="500" height="560" controls>
-            <source src="assets/Thunkable - Calculator.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
+                    <video id="calculatorVideo" class="modal-video-player" width="500" height="560" controls muted>
+                        <source src="assets/Thunkable - Calculator.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="video-play-btn" id="calculatorPlay">▶</button>
                 </div>
             </div>
             <div class="modal-info">
@@ -313,9 +314,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
