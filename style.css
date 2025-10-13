@@ -1742,3 +1742,510 @@ body.dark-mode .modal-button:hover {
     }
 }
 
+/* Add to existing style.css */
+
+/* Responsive Base Styles */
+@media (max-width: 1200px) {
+    .container {
+        padding: 15px;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .ecosystem {
+        height: auto;
+        min-height: 600px;
+        max-width: 100%;
+    }
+    
+    .tree-container {
+        transform: translateX(-50%) scale(0.9);
+    }
+    
+    .bubble {
+        transform: scale(0.9);
+    }
+    
+    .bubble:hover {
+        transform: scale(1.1) translateY(-10px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .header h1 {
+        font-size: 2.5em;
+    }
+    
+    .ecosystem {
+        height: auto;
+        min-height: 500px;
+    }
+    
+    .tree-container {
+        width: 220px;
+        height: 380px;
+        bottom: 60px;
+    }
+    
+    .canopy {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .leaf-cluster1 {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .leaf-cluster2,
+    .leaf-cluster3 {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .leaf-cluster4,
+    .leaf-cluster5 {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Adjust bubble positions */
+    .spt1-1 {
+        top: 30px;
+        left: 200px;
+    }
+    
+    .spt1-2 {
+        top: 80px;
+        left: 120px;
+    }
+    
+    .spt1-3 {
+        top: 140px;
+        left: 180px;
+    }
+    
+    .spt1-4 {
+        top: 120px;
+        left: 270px;
+    }
+    
+    .ws101-1 {
+        top: 30px;
+        right: 210px;
+    }
+    
+    .ws101-2 {
+        top: 80px;
+        right: 120px;
+    }
+    
+    .ws101-3 {
+        top: 140px;
+        right: 190px;
+    }
+    
+    .ws101-4 {
+        top: 120px;
+        right: 270px;
+    }
+    
+    .spt2-1 {
+        bottom: 90px;
+        left: 320px;
+    }
+    
+    .spt2-2 {
+        bottom: 90px;
+        right: 250px;
+    }
+    
+    .legend {
+        position: static;
+        margin: 20px auto;
+        max-width: 300px;
+        transform: none;
+        top: auto;
+        right: auto;
+    }
+    
+    .dark-mode-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2em;
+        margin-bottom: 5px;
+    }
+    
+    .header p {
+        font-size: 1em;
+    }
+    
+    .ecosystem {
+        min-height: 400px;
+        margin: 20px 0;
+    }
+    
+    .tree-container {
+        width: 180px;
+        height: 320px;
+        bottom: 50px;
+    }
+    
+    .canopy {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .leaf-cluster1 {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .leaf-cluster2,
+    .leaf-cluster3 {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .leaf-cluster4,
+    .leaf-cluster5 {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .trunk {
+        width: 50px;
+        height: 160px;
+    }
+    
+    /* Adjust bubble sizes and positions */
+    .bubble {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .bubble-icon {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+    }
+    
+    .bubble-text {
+        font-size: 0.65em;
+        padding: 0 8px;
+    }
+    
+    /* Mobile bubble positioning */
+    .spt1-1 {
+        top: 20px;
+        left: 150px;
+    }
+    
+    .spt1-2 {
+        top: 70px;
+        left: 80px;
+    }
+    
+    .spt1-3 {
+        top: 120px;
+        left: 130px;
+    }
+    
+    .spt1-4 {
+        top: 100px;
+        left: 200px;
+    }
+    
+    .ws101-1 {
+        top: 20px;
+        right: 160px;
+    }
+    
+    .ws101-2 {
+        top: 70px;
+        right: 80px;
+    }
+    
+    .ws101-3 {
+        top: 120px;
+        right: 140px;
+    }
+    
+    .ws101-4 {
+        top: 100px;
+        right: 200px;
+    }
+    
+    .spt2-1 {
+        bottom: 70px;
+        left: 240px;
+    }
+    
+    .spt2-2 {
+        bottom: 70px;
+        right: 180px;
+    }
+    
+    /* Adjust background elements for mobile */
+    .sun {
+        width: 80px;
+        height: 80px;
+        top: 5%;
+        right: 10%;
+    }
+    
+    .cloud1 {
+        top: 5%;
+        left: 5%;
+    }
+    
+    .cloud2 {
+        top: 15%;
+        right: 5%;
+    }
+    
+    .cloud3 {
+        top: 3%;
+        left: 35%;
+    }
+    
+    .bird svg {
+        width: 40px;
+        height: 24px;
+    }
+    
+    .butterfly {
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.6em;
+    }
+    
+    .header p {
+        font-size: 0.9em;
+    }
+    
+    .ecosystem {
+        min-height: 350px;
+    }
+    
+    .tree-container {
+        width: 150px;
+        height: 280px;
+        bottom: 40px;
+    }
+    
+    .canopy {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .leaf-cluster1 {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .leaf-cluster2,
+    .leaf-cluster3 {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .leaf-cluster4,
+    .leaf-cluster5 {
+        width: 80px;
+        height: 80px;
+    }
+    
+    /* Further adjust bubble sizes */
+    .bubble {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    
+    .bubble-icon {
+        font-size: 1.3em;
+        margin-bottom: 4px;
+    }
+    
+    .bubble-text {
+        font-size: 0.6em;
+        padding: 0 6px;
+    }
+    
+    /* Compact bubble positioning for very small screens */
+    .spt1-1 {
+        top: 15px;
+        left: 120px;
+    }
+    
+    .spt1-2 {
+        top: 60px;
+        left: 60px;
+    }
+    
+    .spt1-3 {
+        top: 100px;
+        left: 100px;
+    }
+    
+    .spt1-4 {
+        top: 85px;
+        left: 160px;
+    }
+    
+    .ws101-1 {
+        top: 15px;
+        right: 130px;
+    }
+    
+    .ws101-2 {
+        top: 60px;
+        right: 60px;
+    }
+    
+    .ws101-3 {
+        top: 100px;
+        right: 110px;
+    }
+    
+    .ws101-4 {
+        top: 85px;
+        right: 160px;
+    }
+    
+    .spt2-1 {
+        bottom: 60px;
+        left: 190px;
+    }
+    
+    .spt2-2 {
+        bottom: 60px;
+        right: 140px;
+    }
+    
+    .legend {
+        padding: 15px;
+        max-width: 250px;
+    }
+    
+    .legend-title {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+    
+    .legend-item {
+        font-size: 0.75em;
+        margin: 8px 0;
+    }
+    
+    .legend-color {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+    }
+    
+    .dark-mode-toggle {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        left: 15px;
+        font-size: 1.3em;
+    }
+    
+    /* Reduce ground elements */
+    .ground {
+        height: 120px;
+    }
+    
+    .grass-blade {
+        height: 30px !important;
+    }
+    
+    .flower {
+        transform: scale(0.8);
+    }
+    
+    .mushroom {
+        transform: scale(0.8);
+    }
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+    .bubble:hover {
+        transform: scale(1.1);
+    }
+    
+    .dark-mode-toggle:hover {
+        transform: scale(1.05);
+    }
+    
+    .bubble:active {
+        transform: scale(1.15);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .container {
+        height: auto;
+        min-height: 100vh;
+        padding: 10px;
+    }
+    
+    .ecosystem {
+        height: auto;
+        min-height: 300px;
+    }
+    
+    .header {
+        margin-bottom: 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.8em;
+    }
+    
+    .tree-container {
+        transform: translateX(-50%) scale(0.7);
+        bottom: 30px;
+    }
+    
+    .bubble {
+        transform: scale(0.8);
+    }
+}
+
+/* High-density displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .bubble {
+        border-width: 2px;
+    }
+    
+    .grass-blade {
+        width: 3px;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
