@@ -344,3 +344,92 @@ multimediaVideo.addEventListener('play', () => {
 calculatorVideo.addEventListener('play', () => {
     calculatorPlayBtn.style.display = 'none';
 });
+
+// Add to existing script.js for mobile enhancements
+
+// Touch event handling for mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Add touch support for bubbles
+    const bubbles = document.querySelectorAll('.bubble');
+    
+    bubbles.forEach(bubble => {
+        bubble.addEventListener('touchstart', function(e) {
+            this.style.transform = 'scale(1.15)';
+            e.preventDefault();
+        });
+        
+        bubble.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+    
+    // Handle viewport height on mobile
+    function setViewportHeight() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    setViewportHeight();
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', setViewportHeight);
+    
+    // Prevent zoom on double-tap
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+    
+    // Improve modal for mobile
+    const modalOverlay = document.getElementById('modalOverlay');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('touchmove', function(e) {
+            if (e.target === modalOverlay) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    }
+});
+
+// Enhanced mobile detection
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
+// Optimize animations for mobile
+if (isMobileDevice()) {
+    // Reduce number of stars and fireflies on mobile
+    const starsContainer = document.getElementById('stars');
+    if (starsContainer) {
+        starsContainer.innerHTML = '';
+        for (let i = 0; i < 50; i++) { // Reduced from 200
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 70 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+    
+    // Reduce grass blades for performance
+    const grass = document.getElementById('grass');
+    if (grass) {
+        const blades = grass.querySelectorAll('.grass-blade');
+        if (blades.length > 75) {
+            for (let i = 75; i < blades.length; i++) {
+                blades[i].remove();
+            }
+        }
+    }
+}
