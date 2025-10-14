@@ -2249,3 +2249,271 @@ body.dark-mode .modal-button:hover {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Add to existing style.css - Mobile Bubble Positioning Fix */
+
+@media (max-width: 1024px) {
+    /* Better bubble positioning for tablets */
+    .spt1-1 {
+        top: 20px;
+        left: 180px;
+    }
+    
+    .spt1-2 {
+        top: 80px;
+        left: 80px;
+    }
+    
+    .spt1-3 {
+        top: 150px;
+        left: 160px;
+    }
+    
+    .spt1-4 {
+        top: 120px;
+        left: 250px;
+    }
+    
+    .ws101-1 {
+        top: 20px;
+        right: 190px;
+    }
+    
+    .ws101-2 {
+        top: 80px;
+        right: 80px;
+    }
+    
+    .ws101-3 {
+        top: 150px;
+        right: 170px;
+    }
+    
+    .ws101-4 {
+        top: 120px;
+        right: 250px;
+    }
+    
+    .spt2-1 {
+        bottom: 80px;
+        left: 280px;
+        z-index: 20; /* Ensure SPT2 bubbles are on top */
+    }
+    
+    .spt2-2 {
+        bottom: 80px;
+        right: 200px;
+        z-index: 20;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile bubble grid layout */
+    .bubble {
+        width: 85px !important;
+        height: 85px !important;
+        z-index: 15;
+        position: absolute;
+    }
+    
+    /* SPT1 Bubbles - Left side */
+    .spt1-1 {
+        top: 30px;
+        left: 10%;
+    }
+    
+    .spt1-2 {
+        top: 120px;
+        left: 5%;
+    }
+    
+    .spt1-3 {
+        top: 210px;
+        left: 12%;
+    }
+    
+    .spt1-4 {
+        top: 150px;
+        left: 22%;
+    }
+    
+    /* WS101 Bubbles - Right side */
+    .ws101-1 {
+        top: 30px;
+        right: 10%;
+        left: auto;
+    }
+    
+    .ws101-2 {
+        top: 120px;
+        right: 5%;
+        left: auto;
+    }
+    
+    .ws101-3 {
+        top: 210px;
+        right: 12%;
+        left: auto;
+    }
+    
+    .ws101-4 {
+        top: 150px;
+        right: 22%;
+        left: auto;
+    }
+    
+    /* SPT2 Bubbles - Bottom center with higher z-index */
+    .spt2-1 {
+        bottom: 100px;
+        left: 25%;
+        right: auto;
+        z-index: 25;
+        transform: scale(1.1); /* Make slightly larger for better touch */
+    }
+    
+    .spt2-2 {
+        bottom: 100px;
+        right: 25%;
+        left: auto;
+        z-index: 25;
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Small mobile optimization */
+    .bubble {
+        width: 75px !important;
+        height: 75px !important;
+    }
+    
+    .bubble-icon {
+        font-size: 1.4em;
+        margin-bottom: 3px;
+    }
+    
+    .bubble-text {
+        font-size: 0.55em;
+        padding: 0 4px;
+        line-height: 1.1;
+    }
+    
+    /* Adjust positions for very small screens */
+    .spt1-1 {
+        top: 25px;
+        left: 8%;
+    }
+    
+    .spt1-2 {
+        top: 110px;
+        left: 3%;
+    }
+    
+    .spt1-3 {
+        top: 195px;
+        left: 10%;
+    }
+    
+    .spt1-4 {
+        top: 140px;
+        left: 20%;
+    }
+    
+    .ws101-1 {
+        top: 25px;
+        right: 8%;
+    }
+    
+    .ws101-2 {
+        top: 110px;
+        right: 3%;
+    }
+    
+    .ws101-3 {
+        top: 195px;
+        right: 10%;
+    }
+    
+    .ws101-4 {
+        top: 140px;
+        right: 20%;
+    }
+    
+    .spt2-1 {
+        bottom: 90px;
+        left: 20%;
+        transform: scale(1.05);
+    }
+    
+    .spt2-2 {
+        bottom: 90px;
+        right: 20%;
+        transform: scale(1.05);
+    }
+}
+
+/* Fix for SPT2 bubbles being unclickable in desktop */
+.spt2-1, .spt2-2 {
+    z-index: 20;
+    cursor: pointer;
+}
+
+/* Ensure bubbles don't get covered by tree elements */
+.tree-container {
+    z-index: 10;
+}
+
+.canopy, .leaves, .leaf-cluster {
+    pointer-events: none; /* Allow clicking through leaves */
+}
+
+.bubble {
+    pointer-events: auto;
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 768px) {
+    .bubble::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        z-index: -1;
+    }
+}
+
+/* Fix modal video sizing for mobile */
+@media (max-width: 768px) {
+    .modal-video {
+        height: 300px;
+        width: 100%;
+        max-width: none;
+    }
+    
+    .modal-video-player {
+        height: 300px;
+        width: 100%;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+    .bubble {
+        transform: scale(0.8);
+    }
+    
+    .spt1-1 { top: 15px; left: 5%; }
+    .spt1-2 { top: 80px; left: 2%; }
+    .spt1-3 { top: 145px; left: 8%; }
+    .spt1-4 { top: 100px; left: 18%; }
+    
+    .ws101-1 { top: 15px; right: 5%; }
+    .ws101-2 { top: 80px; right: 2%; }
+    .ws101-3 { top: 145px; right: 8%; }
+    .ws101-4 { top: 100px; right: 18%; }
+    
+    .spt2-1 { bottom: 60px; left: 25%; }
+    .spt2-2 { bottom: 60px; right: 25%; }
+}
