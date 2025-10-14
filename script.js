@@ -433,3 +433,147 @@ if (isMobileDevice()) {
         }
     }
 }
+
+// Add to existing script.js - Mobile Bubble Interaction Fix
+
+// Enhanced mobile bubble handling
+document.addEventListener('DOMContentLoaded', function() {
+    const bubbles = document.querySelectorAll('.bubble');
+    
+    // Fix for SPT2 bubbles - ensure they're clickable
+    const spt2Bubbles = document.querySelectorAll('.spt2-1, .spt2-2');
+    
+    spt2Bubbles.forEach(bubble => {
+        // Remove any existing inline styles that might block clicks
+        bubble.style.pointerEvents = 'auto';
+        bubble.style.zIndex = '25';
+        
+        // Add enhanced click/touch handling
+        bubble.addEventListener('click', function(e) {
+            console.log('SPT2 bubble clicked:', this.className);
+            if (this.getAttribute('href') === '#' || this.hasAttribute('data-modal')) {
+                e.preventDefault();
+                const modalType = this.getAttribute('data-modal');
+                if (modalType) {
+                    openModal(modalType);
+                }
+            }
+        });
+        
+        // Enhanced touch feedback
+        bubble.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(1.2)';
+            this.style.transition = 'transform 0.1s ease';
+        });
+        
+        bubble.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1.1)';
+        });
+    });
+    
+    // Improved bubble spacing detection
+    function checkBubbleOverlap() {
+        const mobileBubbles = document.querySelectorAll('.bubble');
+        const bubbleArray = Array.from(mobileBubbles);
+        
+        bubbleArray.forEach((bubble, index) => {
+            const rect1 = bubble.getBoundingClientRect();
+            
+            // Check for overlaps with other bubbles
+            for (let j = index + 1; j < bubbleArray.length; j++) {
+                const rect2 = bubbleArray[j].getBoundingClientRect();
+                
+                // If bubbles overlap on mobile, adjust positions
+                if (rect1.right > rect2.left && rect1.left < rect2.right &&
+                    rect1.bottom > rect2.top && rect1.top < rect2.bottom) {
+                    
+                    // Add small random adjustment to prevent overlap
+                    const randomX = (Math.random() - 0.5) * 20;
+                    const randomY = (Math.random() - 0.5) * 20;
+                    
+                    bubble.style.transform = `translate(${randomX}px, ${randomY}px) scale(1.1)`;
+                }
+            }
+        });
+    }
+    
+    // Run overlap check on resize and load
+    window.addEventListener('resize', checkBubbleOverlap);
+    window.addEventListener('load', checkBubbleOverlap);
+    
+    // Mobile-specific improvements
+    if (isMobileDevice()) {
+        // Increase tap target size
+        bubbles.forEach(bubble => {
+            bubble.style.minWidth = '44px';
+            bubble.style.minHeight = '44px';
+        });
+        
+        // Ensure SPT2 bubbles are easily tappable
+        spt2Bubbles.forEach(bubble => {
+            bubble.style.cursor = 'pointer';
+            bubble.style.userSelect = 'none';
+            bubble.style.webkitTapHighlightColor = 'rgba(0,0,0,0.1)';
+        });
+    }
+});
+
+// Enhanced mobile detection
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+           (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+}
+
+// Fix for modal video autoplay on mobile
+function openModal(modalId) {
+    console.log('Opening modal:', modalId);
+    
+    // Hide all modal contents
+    document.querySelectorAll('.modal-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Show selected modal content
+    const selectedModal = document.getElementById(`${modalId}-modal`);
+    
+    if (selectedModal) {
+        selectedModal.classList.add('active');
+    }
+    
+    // Set current video based on modal
+    if (modalId === 'multimedia') {
+        currentVideo = multimediaVideo;
+        currentPlayBtn = multimediaPlayBtn;
+    } else if (modalId === 'calculator') {
+        currentVideo = calculatorVideo;
+        currentPlayBtn = calculatorPlayBtn;
+    }
+    
+    // Show overlay
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Mobile-friendly video handling
+    setTimeout(() => {
+        if (currentVideo) {
+            currentVideo.currentTime = 0;
+            
+            // On mobile, don't autoplay but show play button
+            if (isMobileDevice()) {
+                currentPlayBtn.style.display = 'block';
+                currentVideo.pause();
+            } else {
+                // Desktop autoplay
+                const playPromise = currentVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        currentPlayBtn.style.display = 'none';
+                    }).catch(error => {
+                        console.log('Auto-play prevented:', error);
+                        currentPlayBtn.style.display = 'block';
+                    });
+                }
+            }
+        }
+    }, 300);
+}
